@@ -1,113 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#080B18">
 
-    <View
+    <!-- Top Header -->
+    <LinearLayout
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="82dp"
-        android:background="@color/green"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#12182A"
+        android:paddingStart="22dp"
+        android:paddingEnd="18dp"
+        android:elevation="4dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Header Text -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="YOUR MUSIC"
+                android:textColor="#00F5FF"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your personal collection"
+                android:textColor="#858DAA"
+                android:textSize="12sp"
+                android:layout_marginTop="3dp" />
+
+        </LinearLayout>
+
+        <!-- Add Song Button -->
+        <ImageButton
+            android:id="@+id/addSongButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:backgroundTint="#7139C6"
+            android:background="@drawable/add_button_background"
+            android:src="@android:drawable/ic_input_add"
+            android:contentDescription="Add song"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:tooltipText="Add song"
+            app:tint="#FFFFFF" />
+
+    </LinearLayout>
+
+    <!-- Neon divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#00BFCB"
+        app:layout_constraintTop_toBottomOf="@id/view" />
+
+    <!-- Song List -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/navbar"
-        app:layout_constraintTop_toBottomOf="@+id/view">
+        android:background="#080B18"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:paddingBottom="12dp"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        app:layout_constraintBottom_toTopOf="@id/navbar">
 
         <LinearLayout
             android:id="@+id/songContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="12dp" />
+            android:padding="16dp" />
+
     </ScrollView>
 
-
+    <!-- Bottom Navigation -->
     <LinearLayout
         android:id="@+id/navbar"
         android:layout_width="match_parent"
-        android:layout_height="82dp"
-        android:background="@color/green"
+        android:layout_height="76dp"
+        android:background="#12182A"
         android:orientation="horizontal"
         android:gravity="center"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Home -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:background="@color/green"
             android:orientation="vertical">
+
             <ImageButton
                 android:id="@+id/homeButton"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Home"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+                android:padding="10dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/home"
                 android:tooltipText="Home"
-                app:tint="@android:color/white" />
+                app:tint="#00F5FF" />
+
             <TextView
                 android:id="@+id/home_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@color/white"
                 android:text="Home"
-                android:paddingBottom="10dp"
-                android:visibility="gone"/>
+                android:textAlignment="center"
+                android:textColor="#00F5FF"
+                android:textSize="11sp"
+                android:paddingBottom="7dp"
+                android:visibility="gone" />
+
         </LinearLayout>
 
+        <!-- Library -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:background="@color/green"
             android:orientation="vertical">
+
             <ImageButton
                 android:id="@+id/libraryButton"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Library"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+                android:padding="10dp"
                 android:scaleType="fitCenter"
-                android:tooltipText="Library"
                 android:src="@drawable/library"
-                app:tint="@android:color/white" />
+                android:tooltipText="Library"
+                app:tint="#858DAA" />
+
             <TextView
                 android:id="@+id/library_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@color/white"
                 android:text="Library"
-                android:paddingBottom="10dp"
-                android:visibility="gone"/>
+                android:textAlignment="center"
+                android:textColor="#858DAA"
+                android:textSize="11sp"
+                android:paddingBottom="7dp"
+                android:visibility="gone" />
+
         </LinearLayout>
 
     </LinearLayout>
 
+    <!-- Bottom neon line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#7139C6"
+        app:layout_constraintBottom_toTopOf="@id/navbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

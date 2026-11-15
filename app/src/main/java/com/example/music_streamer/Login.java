@@ -17,7 +17,7 @@ import com.example.music_streamer.logger.Logger;
 import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
-    private static final String LOGIN_URL = "http://10.200.168.248:8000/login/";
+    private static final String LOGIN_URL = "http://10.173.217.248:8000/login/";
     private final Logger logger = new Logger(this);
     EditText email, password;
     Button login;
@@ -61,8 +61,10 @@ public class Login extends AppCompatActivity {
             String status = jsonResponse.has("status") ? jsonResponse.getString("status") : "0";
             if ("1".equals(status)) {
                 String authToken = jsonResponse.getString("token");
+                long userId = jsonResponse.getLong("userId");
                 SharedPreferences preferences = getSharedPreferences("auth", MODE_PRIVATE);
                 preferences.edit().putString("token", authToken).apply();
+                preferences.edit().putLong("userId", userId).apply();
                 showLoginResult(true);
             } else {
                 Log.e(Login.class.getName(), "Error logging in: "+jsonResponse);
